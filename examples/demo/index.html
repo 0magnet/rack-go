@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>rack-go</title>
+<style>
+  body { margin: 0; padding: 18px; background: #0b0e11; color: #cdd;
+         font: 14px/1.5 system-ui, sans-serif; }
+  h1 { font-size: 18px; margin: 0 0 4px; }
+  p { margin: 0 0 12px; color: #7c93a8; max-width: 70em; }
+  a { color: #6cf; }
+  .buttons { margin: 12px 0; display: flex; gap: 8px; flex-wrap: wrap; }
+  button { background: #1a2027; color: #cdd; border: 1px solid #2a333c;
+           border-radius: 4px; padding: 6px 12px; cursor: pointer; }
+  button:hover { background: #222a33; }
+
+  /* Everything below is this page's own look. rack-go ships layout only, so a
+     host styles its modules however it likes without undoing anything. */
+  /* Scaled too: the module height is what decides how many columns the content
+     wraps into, so a fixed height plus scaled cells would change the column
+     count — and therefore the slot count — every time the scale moved. */
+  #rack-host { --rack-mod-h: calc(320px * var(--rack-scale, 1)); margin-top: 14px; }
+  .demo-mod { border: 1px solid #2a333c; border-radius: 6px;
+              background: linear-gradient(#15191e, #0d1013);
+              box-shadow: inset 0 1px 0 #2f3944, 0 1px 3px #000; }
+  .demo-mod > .rack-mod-hdr { color: #7c93a8; font-size: 10px; letter-spacing: 2px;
+              text-transform: uppercase; margin: -4px -8px 5px; padding: 3px 8px;
+              border-bottom: 1px solid #232a30; background: rgba(255,255,255,.02);
+              border-radius: 5px 5px 0 0; }
+  /* Sized from --rack-scale, which the rack publishes on its container for
+     exactly this. Content that ignores it does not shrink when the rack does,
+     so it stops fitting the narrower slot and the quantizer — correctly —
+     gives the module more slots, which reads as the scale control working
+     backwards. */
+  .demo-cell { width: calc(110px * var(--rack-scale, 1));
+               height: calc(34px * var(--rack-scale, 1)); box-sizing: border-box;
+               display: flex; align-items: center; justify-content: center;
+               font-size: calc(11px * var(--rack-scale, 1)); color: #9ab;
+               border: 1px solid #232a30; border-radius: 3px; background: #11151a; }
+  .rack-switch { font-size: calc(11px * var(--rack-scale, 1)); color: #9ab;
+                 width: calc(110px * var(--rack-scale, 1)); }
+</style>
+</head>
+<body>
+<h1>rack-go</h1>
+<p>Panel modules laid out the way an equipment rack does: side by side, each one snapped to a whole
+number of slots, wrapping into rows and reflowing when one is taken out. Not a window manager —
+nothing overlaps, everything sits on the same pitch. Compose it with one:
+<a href="https://github.com/0magnet/winbox-go">winbox-go</a> will dock a window to a screen edge, and a
+rack mounted inside it is a control panel.</p>
+
+<p>Every module here holds the same kind of cell and a different number of them, so the quantization is
+visible: <em>Envelope</em> needs one slot, <em>Mixer</em> needs several, and their right edges line up
+with the modules beside them either way.</p>
+
+<div class="buttons">
+  <button id="btn-bigger">Scale +</button>
+  <button id="btn-smaller">Scale −</button>
+  <button id="btn-column">Toggle column mode</button>
+  <button id="btn-report">Report state (console)</button>
+</div>
+
+<p>Drag a module by its header to move it into another gap. Use the switches in the Console to put
+modules away — the Console has no switch of its own, because the way back has to be somewhere that
+cannot itself be put away.</p>
+
+<div id="rack-host" class="rack"></div>
+
+<script src="wasm_exec.js"></script>
+<script>
+  const go = new Go();
+  WebAssembly.instantiateStreaming(fetch("demo.wasm"), go.importObject)
+    .then((r) => go.run(r.instance));
+</script>
+</body>
+</html>
