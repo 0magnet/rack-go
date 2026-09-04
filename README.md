@@ -5,6 +5,10 @@ each one a whole number of slots wide, wrapping into rows and reflowing when one
 is taken out. Go/WebAssembly, no dependencies, builds with both the standard Go
 toolchain and TinyGo.
 
+**[Live demo](https://0magnet.github.io/rack-go/)** — drag a module by its header to move it, or use the Console switches to put one away and watch the rest reflow.
+
+![rack-go in the browser](docs/rack-go-demo.png "modules of differing slot widths sharing a row, with the Console switches that put them away")
+
 ```
 go get github.com/0magnet/rack-go
 ```
