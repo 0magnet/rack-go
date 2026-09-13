@@ -2,7 +2,26 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>rack-go</title>
+<title>rack-go — equipment-rack layout in Go and WebAssembly</title>
+<!-- seo:begin -->
+<meta name="description" content="Panel modules laid out the way a physical equipment rack does: whole-slot widths, wrapping into rows, reflowing when one is removed. Go and WebAssembly, no dependencies.">
+<meta name="author" content="0magnet">
+<link rel="canonical" href="https://rack-go.magnetosphere.net/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="magnetosphere">
+<meta property="og:title" content="rack-go — equipment-rack layout for the browser, in Go">
+<meta property="og:description" content="Panel modules laid out the way a physical equipment rack does: whole-slot widths, wrapping into rows, reflowing when one is removed. Go and WebAssembly, no dependencies.">
+<meta property="og:url" content="https://rack-go.magnetosphere.net/">
+<meta property="og:image" content="https://rack-go.magnetosphere.net/rack-go-demo.png">
+<meta property="og:image:alt" content="Panel modules of differing slot widths sharing a row, with switches that remove them and make the rest reflow">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="rack-go — equipment-rack layout for the browser, in Go">
+<meta name="twitter:description" content="Panel modules laid out the way a physical equipment rack does: whole-slot widths, wrapping into rows, reflowing when one is removed. Go and WebAssembly, no dependencies.">
+<meta name="twitter:image" content="https://rack-go.magnetosphere.net/rack-go-demo.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","applicationCategory":"DeveloperApplication","author":{"@type":"Person","name":"0magnet"},"browserRequirements":"Requires WebAssembly","description":"Panel modules laid out the way a physical equipment rack does: whole-slot widths, wrapping into rows, reflowing when one is removed. Go and WebAssembly, no dependencies.","image":"https://rack-go.magnetosphere.net/rack-go-demo.png","isAccessibleForFree":true,"name":"rack-go — equipment-rack layout for the browser, in Go","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"operatingSystem":"Any (modern web browser)","sameAs":"https://github.com/0magnet/rack-go","url":"https://rack-go.magnetosphere.net/"}
+</script>
+<!-- seo:end -->
 <style>
   body { margin: 0; padding: 18px; background: #0b0e11; color: #cdd;
          font: 14px/1.5 system-ui, sans-serif; }
@@ -42,6 +61,14 @@
 </style>
 </head>
 <body>
+<!-- seo:begin -->
+<div style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">
+<h1>rack-go — equipment-rack layout in Go and WebAssembly</h1>
+<p>A layout engine that arranges panel modules the way a 19-inch equipment rack does: side by side, each one a whole number of slots wide, wrapping into rows when a row fills, and reflowing when a module is taken out or put back.</p>
+<p>Drag a module by its header to move it, or use the console switches to remove one and watch the rest close up. No dependencies; builds with both the standard Go toolchain and TinyGo.</p>
+<p>Source code: <a href="https://github.com/0magnet/rack-go">github.com/0magnet/rack-go</a>. More Go and WebAssembly projects: <a href="https://magnetosphere.net/software">magnetosphere.net/software</a>.</p>
+</div>
+<!-- seo:end -->
 <h1>rack-go</h1>
 <p>Panel modules laid out the way an equipment rack does: side by side, each one snapped to a whole
 number of slots, wrapping into rows and reflowing when one is taken out. Not a window manager —
