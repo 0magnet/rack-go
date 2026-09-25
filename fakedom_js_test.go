@@ -102,8 +102,11 @@ const fakeDOMSource = `
       // display if one was set, and the default otherwise.
       return {display: el.style.display || "block"};
     },
-    addEventListener: function () {},
-    removeEventListener: function () {},
+    _listeners: [],
+    addEventListener: function (type, fn) { this._listeners.push({type: type, fn: fn}); },
+    removeEventListener: function (type, fn) {
+      this._listeners = this._listeners.filter(function (l) { return !(l.type === type && l.fn === fn); });
+    },
     requestAnimationFrame: function (f) { f(0); return 0; },
     devicePixelRatio: 1,
   };
